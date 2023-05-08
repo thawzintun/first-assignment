@@ -10,13 +10,17 @@ function App() {
         setStudents((prevState) => [...prevState, { name, live }]);
     };
 
+    let contentSection = <li>No Members Added!</li>;
+
+    if (students.length > 0) {
+        contentSection = students.map((student, index) => (
+            <Student key={index} student={student} />
+        ));
+    }
+
     return (
         <div className="App">
-            <ol>
-                {students.map((student, index) => (
-                    <Student key={index} student={student} />
-                ))}
-            </ol>
+            <ol>{contentSection}</ol>
             <Form addStudent={addStudent} />
         </div>
     );
